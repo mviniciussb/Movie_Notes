@@ -1,17 +1,8 @@
-const express = require ("express")
+const routes = require("./routes/index");
+const express = require("express");
+const app = express();
 
+app.use(routes);
 
-const app = express()
-
-
-
-
-app.get("/", (request, response) => {
-    response.send(":-D")
-})
-
-
-
-
-const PORT = 5555
-app.listen(PORT, () => console.log(`The server is running on port ${PORT}.`))
+const PORT = 5555;
+app.listen(PORT, () => console.log(`The server is running on port ${PORT}.`));
