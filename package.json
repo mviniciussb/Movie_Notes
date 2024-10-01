@@ -1,0 +1,25 @@
+{
+  "name": "movie_notes",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+
+
+  "scripts": {
+    "start": "node ./src/server.js"
+  },
+
+
+
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+
+
+
+
+  "dependencies": {
+    "express": "^4.21.0"
+  }
+}
