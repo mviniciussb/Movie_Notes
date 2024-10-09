@@ -54,12 +54,29 @@ class NotesController {
       title,
       description,
       avaliation,
-      updated_at: knex.fn.now()
+      updated_at: knex.fn.now(),
     });
 
     return response
       .status(200)
       .json({ message: "Nota atualizada com sucesso." });
+  }
+
+  async show(request, response) {
+    const { id } = request.params;
+
+    const note = await knex("notes").where({ id }).first();
+
+    if (!note) {
+      return response.status(404).json({ Error: "Nota não encontrada." });
+    }
+
+    const tags = await knex("tags").where({ note_id: note.id });
+
+    return response.status(200).json({
+      ...note,
+      tags,
+    });
   }
 }
 
