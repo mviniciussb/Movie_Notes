@@ -4,7 +4,7 @@ class NotesController {
   async create(request, response) {
     const { title, description, avaliation, tags } = request.body;
     const { user_id } = request.params;
-    let note_id
+    let note_id;
 
     if (avaliation >= 1 && avaliation <= 5) {
       [note_id] = await knex("notes").insert({
@@ -19,12 +19,12 @@ class NotesController {
         .json({ error: "Digite apenas números no intervalo de 1 a 5." });
     }
 
-    const insertTags = tags.map(name => {
-      return { 
-        name, 
+    const insertTags = tags.map((name) => {
+      return {
+        name,
         user_id,
-        note_id
-         };
+        note_id,
+      };
     });
 
     await knex("tags").insert(insertTags);
@@ -34,10 +34,34 @@ class NotesController {
       .json({ message: `Avaliação do filme ${title} cadastrada com sucesso.` });
   }
 
-  // async update(request, response) {
-  //   const { title, description, avaliation } = request.body;
-  //   const { id } = request.params;
-  // }
+  async update(request, response) {
+    const { title, description, avaliation, tags } = request.body;
+    const { id } = request.params;
+
+    if (avaliation < 1 || avaliation > 5) {
+      return response
+        .status(400)
+        .json({ error: "Digite apenas números no intervalo de 1 a 5." });
+    }
+
+    const noteExists = await knex("notes").where({ id }).first();
+
+    if (!noteExists) {
+      return response.status(404).json({ error: "Nota não encontrada." });
+    }
+
+    await knex("notes").where({ id }).update({
+      title,
+      description,
+      avaliation,
+    });
+
+    return response
+      .status(200)
+      .json({ message: "Nota atualizada com sucesso." });
+  }
+
+
 }
 
 module.exports = NotesController;
