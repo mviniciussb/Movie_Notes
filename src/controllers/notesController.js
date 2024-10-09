@@ -78,6 +78,14 @@ class NotesController {
       tags,
     });
   }
+
+  async index(request, response) {
+    const { user_id } = request.query
+
+    const notes = await knex("notes").where({ user_id })
+
+    return response.status(200).json({ notes })
+  }
 }
 
 module.exports = NotesController;
