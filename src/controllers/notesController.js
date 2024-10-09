@@ -54,14 +54,13 @@ class NotesController {
       title,
       description,
       avaliation,
+      updated_at: knex.fn.now()
     });
 
     return response
       .status(200)
       .json({ message: "Nota atualizada com sucesso." });
   }
-
-
 }
 
 module.exports = NotesController;
