@@ -102,7 +102,19 @@ class NotesController {
         .whereLike("title", `%${title}%`)
     }
 
-    return response.status(200).json(notes)
+    const userTags = await knex("tags").where({ user_id })
+
+
+    const notesWithTags = notes.map(note => {
+      const notesTag = userTags.filter(tag => tag.note_id === note.id)
+
+      return {
+        ...note, tags: notesTag
+      }
+    })
+
+
+    return response.status(200).json(notesWithTags)
   }
 }
 
