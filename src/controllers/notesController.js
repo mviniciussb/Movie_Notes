@@ -116,6 +116,14 @@ class NotesController {
 
     return response.status(200).json(notesWithTags)
   }
+
+  async delete(request, response){
+    const {id} = request.params
+
+    const deleteNote = await knex("notes").where({id}).delete()
+
+    return response.json({message: "Nota deletada com sucesso."})
+  }
 }
 
 module.exports = NotesController;
