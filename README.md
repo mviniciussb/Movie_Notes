@@ -61,6 +61,5 @@
    src/
 ├── controllers/   # Controladores das rotas da API
 ├── database/      # Configurações do banco de dados e migrations
-├── models/        # Modelos de dados (Knex)
 ├── routes/        # Definições das rotas da API
 └── server.js      # Arquivo principal que inicia o servidor
