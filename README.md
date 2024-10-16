@@ -57,17 +57,10 @@
 
 
  ## Estrutura do Projeto
-
- src/
+   ```bash
+   src/
 ├── controllers/   # Controladores das rotas da API
 ├── database/      # Configurações do banco de dados e migrations
 ├── models/        # Modelos de dados (Knex)
 ├── routes/        # Definições das rotas da API
 └── server.js      # Arquivo principal que inicia o servidor
-
-
-Contribuições
-Se você deseja contribuir com o projeto, sinta-se à vontade para abrir uma issue ou enviar um pull request.
-
-Licença
-Este projeto está licenciado sob a Licença MIT.
